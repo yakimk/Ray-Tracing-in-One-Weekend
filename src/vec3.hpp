@@ -8,17 +8,17 @@ using std::sqrt;
 
 class vec3{
     public:
-        float x[3];
+        double x[3];
         vec3() : x{0,0,0} {}
-        vec3(float x, float y, float z):x{x,y,z} {}
-        float x1() const { return x[0]; }
-        float x2() const { return x[1]; }
-        float x3() const { return x[2]; }
+        vec3(double x,  double y, double z):x{x,y,z} {}
+        double x1() const { return x[0]; }
+        double x2() const { return x[1]; }
+        double x3() const { return x[2]; }
         
         vec3 operator - () const{return vec3(-x[0], -x[1], -x[2]);}
 
-        float operator [] (int a) const{return x[a];}
-        float& operator [] (int a) {return x[a];}
+        double operator [] (int a) const{return x[a];}
+        double& operator [] (int a) {return x[a];}
 
         vec3 operator += (int a) const{return vec3(x[0]+a, x[1]+a, x[2]+a);}
 
@@ -29,14 +29,14 @@ class vec3{
             return *this;
         }
 
-        vec3& operator *= (const float m){
+        vec3& operator *= (const double m){
             x[0]*=m;
             x[1]*=m;
             x[2]*=m;
             return *this;
         }
 
-        vec3& operator /= (const float m){
+        vec3& operator /= (const double m){
             if (m==0){throw std::invalid_argument("Cannot divide by '0'.");}
             return *this*=1/m;
         }
@@ -77,7 +77,7 @@ inline vec3 operator/(const vec3 &v, double t) {
     return (1/t) * v;
 }
 
-inline float dot (const vec3 &v, const vec3 &w){
+inline double dot (const vec3 &v, const vec3 &w){
     return v.x[0]*w.x[0]+v.x[1]*w.x[1]+v.x[2]*w.x[2];
 }
 
@@ -89,6 +89,6 @@ inline vec3 cross(const vec3 &v, const vec3 &w){
     );
 }
 
-inline vec3 normalize(const vec3 &v){
+inline vec3 normalize(vec3 v){
     return v/v.len();
 }
