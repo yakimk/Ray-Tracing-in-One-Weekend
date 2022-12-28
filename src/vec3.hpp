@@ -11,9 +11,9 @@ class vec3{
         float x[3];
         vec3() : x{0,0,0} {}
         vec3(float x, float y, float z):x{x,y,z} {}
-        float x() const { return x[0]; }
-        float y() const { return x[1]; }
-        float z() const { return x[2]; }
+        float x1() const { return x[0]; }
+        float x2() const { return x[1]; }
+        float x3() const { return x[2]; }
         
         vec3 operator - () const{return vec3(-x[0], -x[1], -x[2]);}
 
