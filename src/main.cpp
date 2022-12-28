@@ -18,5 +18,5 @@ int main(){
             std::cout<<ir<<' '<<ig<<' '<<ib<<'\n';
         }
     }
-    std::cerr<<"\nSuccess. \n";
+    std::cerr<<"\nSuccess. \n"<<std::flush;
 }
