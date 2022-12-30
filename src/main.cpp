@@ -26,19 +26,19 @@ color ray_color(ray& r){
 int main(){
 
     //Screen    
-    const double aspect_ratio = 16/9;
-    const int width = 600;
-    const int height = static_cast<int>(400/aspect_ratio);
+    const auto aspect_ratio = 16.0 / 9.0;
+    const int width = 400;
+    const int height = static_cast<int>(width / aspect_ratio);
 
     //Camera
-    double viewport_hegith = 2;
-    auto viewport_width = aspect_ratio*viewport_hegith;
-    double focal_length = 1;
+    auto viewport_height = 2.0;
+    auto viewport_width = aspect_ratio * viewport_height;
+    auto focal_length = 1.0;
 
-    point origin = point(0,0,0);
-    vec3 vertical = vec3(0,viewport_hegith,0);
-    vec3 horizontal = vec3(viewport_width,0,0);
-    vec3 lower_left_corner = origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
+    auto origin = point(0, 0, 0);
+    auto horizontal = vec3(viewport_width, 0, 0);
+    auto vertical = vec3(0, viewport_height, 0);
+    auto lower_left_corner = origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
 
     std::cout << "P3\n" << width << ' ' << height << "\n255\n";
     for (int j=height-1; j>=0;j--){
