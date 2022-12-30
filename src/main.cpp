@@ -6,7 +6,7 @@
 
 //t^2 b^2 + 2Atb + A^2-r^2 = 0
 double hit_sphere(const point& center, const double r, ray& ray){
-    vec3 oc = r.origin() - center;
+    vec3 oc = ray.origin() - center;
     const double a = dot(ray.direction(), ray.direction());
     const double half_b = dot(oc, ray.direction());
     const double c = dot(oc,oc) - r*r;
