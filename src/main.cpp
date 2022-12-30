@@ -5,32 +5,38 @@
 #include<cstdlib>
 
 //t^2 b^2 + 2Atb + A^2-r^2 = 0
-bool hit_sphere(const point& center, const double r, ray& ray){
+double hit_sphere(const point& center, const double r, ray& ray){
+    vec3 oc = r.origin() - center;
     const double a = dot(ray.direction(), ray.direction());
-    const double b = 2*dot(ray.origin()-center, ray.direction());
-    const double c = dot(ray.origin()-center, ray.origin()-center) - r*r;
-    const double discriminant = b*b -4*a*c;
-    return discriminant>0;
+    const double half_b = dot(oc, ray.direction());
+    const double c = dot(oc,oc) - r*r;
+    const double discriminant = (half_b*half_b -a*c);
+    if (discriminant<0){
+        return -1;
+    }else{
+        return (-half_b-sqrt(discriminant))/a;
+    }
 }
 
 //It compiles when I remove const before ray& in ray_color args,
 //but originally it a book ith has const.
 color ray_color(ray& r){
-    if (hit_sphere(point(0,0,-1), 0.5, r)){return color(0,1,0);}
+    auto t = hit_sphere(point(0,0,-1), 0.5, r);
+    if (t > 0){
+        vec3 N = normalize(r.lin(t) - vec3(0,0,-1));
+        return 0.5*color(N.x1()+1, N.x2()+1, N.x3()+1);
+    }
     vec3 unit_direction = normalize(r.direction());
-    double t = 0.5*(unit_direction.x2()+1);
+    t = 0.5*(unit_direction.x2()+1);
     return (1.0-t)*color(1.0, 1.0, 1.0) + t*color(0.5, 0.7, 1.0);
-
 }
 
 int main(){
 
-    //Screen    
     const auto aspect_ratio = 16.0 / 9.0;
-    const int width = 400;
+    const int width = 600;
     const int height = static_cast<int>(width / aspect_ratio);
 
-    //Camera
     auto viewport_height = 2.0;
     auto viewport_width = aspect_ratio * viewport_height;
     auto focal_length = 1.0;
