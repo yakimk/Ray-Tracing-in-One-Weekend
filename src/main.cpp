@@ -4,13 +4,23 @@
 #include <iostream>
 #include<cstdlib>
 
+//t^2 b^2 + 2Atb + A^2-r^2 = 0
+bool hit_sphere(const point& center, const double r, ray& ray){
+    const double a = dot(ray.direction(), ray.direction());
+    const double b = 2*dot(ray.origin()-center, ray.direction());
+    const double c = dot(ray.origin()-center, ray.origin()-center) - r*r;
+    const double discriminant = b*b -4*a*c;
+    return discriminant>0;
+}
 
 //It compiles when I remove const before ray& in ray_color args,
 //but originally it a book ith has const.
 color ray_color(ray& r){
+    if (hit_sphere(point(0,0,-1), 0.5, r)){return color(0,1,0);}
     vec3 unit_direction = normalize(r.direction());
     double t = 0.5*(unit_direction.x2()+1);
-    return (1-t)*color(1,1,1) + t*color(0.5,0.7,1);
+    return (1.0-t)*color(1.0, 1.0, 1.0) + t*color(0.5, 0.7, 1.0);
+
 }
 
 int main(){

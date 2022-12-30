@@ -23,7 +23,7 @@ class vec3{
         vec3 operator += (int a) const{return vec3(x[0]+a, x[1]+a, x[2]+a);}
 
         vec3& operator += (const vec3 &v) {
-            x[0]+= v.x[0];
+            x[0]+=v.x[0];
             x[1]+=v.x[1];
             x[2]+=v.x[2];
             return *this;
