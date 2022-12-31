@@ -7,14 +7,22 @@
 using std::sqrt;
 
 class vec3{
+<<<<<<< Updated upstream
     public:
+=======
+        public:
+>>>>>>> Stashed changes
         double x[3];
         vec3() : x{0,0,0} {}
         vec3(double x,  double y, double z):x{x,y,z} {}
         double x1() const { return x[0]; }
         double x2() const { return x[1]; }
         double x3() const { return x[2]; }
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
         vec3 operator - () const{return vec3(-x[0], -x[1], -x[2]);}
 
         double operator [] (int a) const{return x[a];}
