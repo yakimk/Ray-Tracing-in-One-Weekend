@@ -15,5 +15,5 @@ inline double degrees_to_radians(double degrees){
     return (degrees/180)*pi;
 }
 
-#include "ray.hpp"
-#include "vec3.hpp"
+#include "ray.h"
+#include "vec3.h"
