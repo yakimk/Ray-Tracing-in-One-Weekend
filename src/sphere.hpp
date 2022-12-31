@@ -5,11 +5,7 @@
 
 class sphere: public hittable{
     public:
-<<<<<<< Updated upstream
-        point center;
-=======
         const point center;
->>>>>>> Stashed changes
         double r;
         sphere() {}
         sphere(point center, double r) : center(center), r(r) {};
