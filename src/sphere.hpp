@@ -14,8 +14,8 @@ class sphere:public hitable{
             const ray& r, double t_min, double t_max, hit_record& rec) const override; 
 }
 
-bool sphere::hit(ray& r, double t_min, double t_max, hit_record& rec){
-    vec3 oc = r.origin() - center;
+bool sphere::hit(ray& ray, double t_min, double t_max, hit_record& rec){
+    vec3 oc = ray.origin() - center;
     const double a = dot(ray.direction(), ray.direction());
     const double half_b = dot(oc, ray.direction());
     const double c = dot(oc,oc) - r*r;
@@ -33,7 +33,9 @@ bool sphere::hit(ray& r, double t_min, double t_max, hit_record& rec){
     }
 
     rec.t = root;
-    rec.p = r.lin(rec.t);
+    rec.p = ray.lin(rec.t);
+    vec3 outward_normal = (rec.p - center) / radius;
+    rec.set_face_normal(ray, outward_normal);
     rec.normal = (rec.p - center )/radius;
 
     return true;

@@ -6,6 +6,12 @@ struct hit_record{
     point p;
     vec3 normal;
     double t;
+    bool front_face;
+
+    inline void set_face_normal(ray& ray, vec3& outward_normal){
+       front_face = dot(ray, outward_normal)<0;
+       normal = front_face ? outward_normal :-outward_normal;
+    }
 };
 
 class hittable {
