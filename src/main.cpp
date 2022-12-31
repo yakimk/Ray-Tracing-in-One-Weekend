@@ -24,8 +24,8 @@ int main(){
     const int height = static_cast<int>(width / aspect_ratio);
 
     hittable_list world;
-    world.add(make_shared<sphere>(point(0,0,-1), 0.5));
-    world.add(make_shared<sphere>(point(0,-100.5,-1), 100));
+    world.add(make_shared<sphere>(point(0,.2,-1), 0.5));
+    world.add(make_shared<sphere>(point(0.5,-101,-5), 100));
 
     auto viewport_height = 2.0;
     auto viewport_width = aspect_ratio * viewport_height;
