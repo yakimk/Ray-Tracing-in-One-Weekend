@@ -4,6 +4,7 @@
 #include <limits>
 #include <memory>
 #include <cstdlib>
+#include <random>
 
 using std::shared_ptr;
 using std::make_shared;
@@ -17,12 +18,11 @@ inline double degrees_to_radians(double degrees){
 }
 
 
-inline double random_double(){
-    return rand()/(RAND_MAX+1);
-}
 
-inline double random_double(double min, double max){
-    return min + (max-min)*random_double();
+inline double random_double() {
+    static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+    static std::mt19937 generator;
+    return distribution(generator);
 }
 
 inline double clamp(double min, double max, double value){
