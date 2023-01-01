@@ -23,7 +23,7 @@ int main(){
     const auto aspect_ratio = 16.0 / 9.0;
     const int width = 600;
     const int height = static_cast<int>(width / aspect_ratio);
-    int samples_per_pixel = 100;
+    int samples_per_pixel = 10;
 
     //Camera
     camera cam;
