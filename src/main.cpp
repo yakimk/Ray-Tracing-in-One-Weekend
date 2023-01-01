@@ -39,7 +39,7 @@ int main(){
     std::cout << "P3\n" << width << ' ' << height << "\n255\n";
     for (int j=height-1; j>=0;j--){
         std::cerr<<"\rLines remaining: "<<j<<" "<<std::flush;
-        for (int i=0;i<width; i++){
+        for (int i=0;i<width;i++){
             auto u = double(i) / (width-1);
             auto v = double(j) / (height-1);
             ray r(origin, lower_left_corner + u*horizontal + v*vertical - origin);
