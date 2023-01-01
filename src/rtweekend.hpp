@@ -17,13 +17,18 @@ inline double degrees_to_radians(double degrees){
 }
 
 
-//#TODO 2 functions with the same name
 inline double random_double(){
     return rand()/(RAND_MAX+1);
 }
 
 inline double random_double(double min, double max){
     return min + (max-min)*random_double();
+}
+
+inline double clamp(double min, double max, double value){
+    if (value>max){return max;}
+    if (value<min){return min;}
+    return value;
 }
 
 #include "ray.hpp"

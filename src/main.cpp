@@ -4,6 +4,7 @@
 #include "hittable_list.hpp"
 #include "hittable.hpp"
 #include <iostream>
+#include "camera.hpp"
 
 //It compiles when I remove const before ray& in ray_color args,
 //but originally it a book ith has const.
@@ -22,29 +23,27 @@ int main(){
     const auto aspect_ratio = 16.0 / 9.0;
     const int width = 600;
     const int height = static_cast<int>(width / aspect_ratio);
+    int samples_per_pixel = 100;
+
+    //Camera
+    camera cam;
 
     hittable_list world;
     world.add(make_shared<sphere>(point(0,.2,-1), 0.5));
     world.add(make_shared<sphere>(point(0.5,-101,-5), 100));
 
-    auto viewport_height = 2.0;
-    auto viewport_width = aspect_ratio * viewport_height;
-    auto focal_length = 1.0;
-
-    auto origin = point(0, 0, 0);
-    auto horizontal = vec3(viewport_width, 0, 0);
-    auto vertical = vec3(0, viewport_height, 0);
-    auto lower_left_corner = origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
-
     std::cout << "P3\n" << width << ' ' << height << "\n255\n";
     for (int j=height-1; j>=0;j--){
         std::cerr<<"\rLines remaining: "<<j<<" "<<std::flush;
         for (int i=0;i<width;i++){
-            auto u = double(i) / (width-1);
-            auto v = double(j) / (height-1);
-            ray r(origin, lower_left_corner + u*horizontal + v*vertical - origin);
-            color pixel_color = ray_color(r, world);
-            flush_color(std::cout, pixel_color);
+            color pixel_color(0,0,0);
+            for (int q=0; q<samples_per_pixel;q++){
+                auto u = (i + random_double()) / (width-1);
+                auto v = (j + random_double()) / (height-1);
+                ray r = cam.get_ray(u, v);
+                pixel_color += ray_color(r, world);
+            }
+            flush_color(std::cout, pixel_color, samples_per_pixel);
         }
     }
     std::cerr<<"\nSuccess. \n"<<std::flush;
