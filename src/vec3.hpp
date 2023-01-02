@@ -107,3 +107,11 @@ vec3 random_in_unit_sphere(){
         return p;
     }
 }
+
+vec3 random_unit_vector(){return normalize(random_in_unit_sphere());}
+
+vec3 random_in_hemisphere(vec3& normal){
+    vec3 bounce = random_in_unit_sphere();
+    if (dot(normal,bounce)>0){return bounce;}
+    return -bounce;
+}
