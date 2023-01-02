@@ -3,6 +3,7 @@
 #include <cmath>
 #include<iostream>
 #include<stdexcept>
+#include "rtweekend.hpp"
 
 using std::sqrt;
 
@@ -48,6 +49,12 @@ class vec3{
         double square_of_len() const{
             return x[0]*x[0]+x[1]*x[1]+x[2]*x[2];
         }
+
+        inline static vec3 random(){return vec3(random_double(), random_double(), random_double());}
+
+        inline static vec3 random(double min, double max){
+            return vec3(random_double(min,max), random_double(min,max), random_double(min,max));
+            }
 };
 
 using point = vec3;
@@ -91,4 +98,12 @@ inline vec3 cross(const vec3 &v, const vec3 &w){
 
 inline vec3 normalize(vec3 v){
     return v/v.len();
+}
+
+vec3 random_in_unit_sphere(){
+    while (true){
+        vec3 p = vec3::random(-1,1);
+        if (p.square_of_len()>=1){continue;}
+        return p;
+    }
 }

@@ -8,11 +8,15 @@
 
 //It compiles when I remove const before ray& in ray_color args,
 //but originally it a book ith has const.
-color ray_color(ray& r, const hittable& world){
+color ray_color(const ray& r, const hittable& world, int depth){
+    if (depth<=0){return color (0,0,0);}
     hit_record rec;
+
     if (world.hit(r,0,infinity, rec)){
-        return 0.5*(rec.normal+color(1,1,1));
-    }   
+        point target = random_in_unit_sphere()+rec.p+rec.normal;
+        return 0.5*ray_color(ray(rec.p, target - rec.p), world, depth-1);
+    }
+
     vec3 unit_direction = normalize(r.direction());
     double t = 0.5*(unit_direction.x2()+1);
     return (1.0-t)*color(1.0, 1.0, 1.0) + t*color(0.5, 0.7, 1.0);
@@ -24,6 +28,7 @@ int main(){
     const int width = 600;
     const int height = static_cast<int>(width / aspect_ratio);
     int samples_per_pixel = 10;
+    const int max_depth = 50;
 
     //Camera
     camera cam;
@@ -41,7 +46,7 @@ int main(){
                 auto u = (i + random_double()) / (width-1);
                 auto v = (j + random_double()) / (height-1);
                 ray r = cam.get_ray(u, v);
-                pixel_color += ray_color(r, world);
+                pixel_color += ray_color(r, world, max_depth);
             }
             flush_color(std::cout, pixel_color, samples_per_pixel);
         }

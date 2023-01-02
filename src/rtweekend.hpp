@@ -21,6 +21,11 @@ inline double random_double(){
     return ((double) rand() / (RAND_MAX));
 }
 
+inline double random_double(double min, double max) {
+    return min + (max-min)*random_double();
+}
+
+
 inline double clamp(double min, double max, double value){
     if (value>max){return max;}
     if (value<min){return min;}
