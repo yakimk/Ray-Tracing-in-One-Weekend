@@ -8,10 +8,10 @@ void flush_color(std::ostream &out, color pixel_color, int samples_per_pixel) {
     auto g = pixel_color.x2();
     auto b = pixel_color.x3();
 
-    auto scale = samples_per_pixel;
-    r /= scale;
-    g /=scale;
-    b /= scale;
+    auto scale = 1.0/samples_per_pixel;
+    r = sqrt(scale*r);
+    g =sqrt(scale*g);
+    b = sqrt(scale*b);
 
     out << static_cast<int>(255.999 * clamp(0,.999,r)) << ' '
         << static_cast<int>(255.999 *clamp(0,.999,g) ) << ' '
