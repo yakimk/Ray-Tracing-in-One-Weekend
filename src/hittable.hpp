@@ -1,11 +1,14 @@
 #pragma once
 
-#include "ray.hpp"
+#include "rtweekend.hpp"
+
+class material;
 
 struct hit_record{
     point p;
     vec3 normal;
     double t;
+    shared_ptr<material> mat_ptr;
     bool front_face;
 
     inline void set_face_normal(const ray& ray, const vec3& outward_normal){
