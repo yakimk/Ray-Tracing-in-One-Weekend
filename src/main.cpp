@@ -1,6 +1,7 @@
 #include "rtweekend.hpp"
 #include "color.hpp"
 #include "sphere.hpp"
+// #include "cube.hpp"
 #include "hittable_list.hpp"
 #include "hittable.hpp"
 #include <iostream>

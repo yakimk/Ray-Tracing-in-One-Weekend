@@ -10,7 +10,7 @@ using std::sqrt;
 class vec3{
     public:
         double x[3];
-        vec3() : x{0,0,0} {}
+        vec3() : x{0.0,0.0,0.0} {}
         vec3(double x,  double y, double z):x{x,y,z} {}
         double x1() const { return x[0]; }
         double x2() const { return x[1]; }

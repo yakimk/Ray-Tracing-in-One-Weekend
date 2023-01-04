@@ -28,8 +28,8 @@ bool hittable_list::hit(const ray& ray, double t_min, double t_max, hit_record& 
 
     for(const auto& object : objects){
         if(object->hit(ray, t_min, t_max, temp_rec)){
-            hit_anything = true;
             if (temp_rec.t< closest_so_far){
+                hit_anything = true;
                 closest_so_far = temp_rec.t;
                 rec = temp_rec;
             }
