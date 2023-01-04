@@ -1,7 +1,6 @@
 #include "rtweekend.hpp"
 #include "color.hpp"
 #include "sphere.hpp"
-#include "materail.hpp"
 #include "hittable_list.hpp"
 #include "hittable.hpp"
 #include <iostream>
@@ -40,8 +39,8 @@ int main(){
 
     hittable_list world;
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<lambertian>(color(0.7, 0.3, 0.3));
-    auto material_left   = make_shared<metal>(color(0.8, 0.8, 0.8), .3);
+auto material_center = make_shared<dielectric>(1.5);
+auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 1 );
 
     world.add(make_shared<sphere>(point( 0.0, -100.5, -1.0), 100.0, material_ground));

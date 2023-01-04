@@ -34,4 +34,4 @@ inline double clamp(double min, double max, double value){
 
 #include "ray.hpp"
 #include "vec3.hpp"
-#include "materail.hpp"
+#include "material.hpp"
