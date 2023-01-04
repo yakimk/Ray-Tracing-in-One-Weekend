@@ -3,7 +3,8 @@
 ## Some renders
 ![A Basic Render from a Book]()
 
+---
 ## What I am going to implement
-- [ ] lights :sun
-- [ ] simplicia geometry :triangle
-- [ ] cubes :icecube
+- [ ] lights :sunny:
+- [ ] simplicia geometry 📐
+- [ ] cubes 🧊
