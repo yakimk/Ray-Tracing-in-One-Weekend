@@ -5,6 +5,7 @@
 
 ---
 ## What I am going to implement
+- [ ] GPU rendering :chart_with_upwards_trend:
 - [ ] lights :sunny:
 - [ ] simplicia geometry 📐
 - [ ] cubes 🧊
